@@ -22,7 +22,7 @@
 		"wildermyth": ["*"]
 	},
 	"recommends": {
-		"wilderforge": [">4.0.0.0"]
+		"wilderforge": [">=4.0.0.0"]
 	},
 	"conflicts": {
 		"legacy_children": ["*"],
