@@ -20,8 +20,10 @@ jobs:
           path: .
           changeNote: ${{ github.event.release.title }}\n\n${{ github.event.release.body }}
   notify:
-    runs-on: ubuntu-latest
+    needs: workshopUpload
     environment: deploy
+    runs-on: ubuntu-latest
+    if: ${{ needs.workshopUpload.result == 'success' }}
     steps:
       - name: Send Discord notification
         uses: stegzilla/discord-notify@v2
@@ -29,6 +31,21 @@ jobs:
           title: New Release!
           webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           message: "##${{ github.event.release.title }}\n\n**Details:** \n${{ github.event.release.body }}\n\n[Full Details](${{ github.event.release.html_url }})"
+          include_image: true
+          avatar_url: https://raw.githubusercontent.com/BoldestDungeon/wildermyth-drauven-pcs/refs/heads/main/GitHubBotAvatar.png
+          username: Trava
+  notify-failure:
+    needs: workshopUpload
+    runs-on: ubuntu-latest
+    environment: deploy
+    if: ${{ needs.workshopUpload.result == 'failure' }}
+    steps:
+      - name: Send Discord failure notification
+        uses: stegzilla/discord-notify@v2
+        with:
+          title: "Release ${{ github.event.release.title }} Deploy Failed!"
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          message: "**Deployment of** `${{ github.event.release.title }}` **failed.**\nPlease check the GitHub Actions logs for more details."
           include_image: true
           avatar_url: https://raw.githubusercontent.com/BoldestDungeon/wildermyth-drauven-pcs/refs/heads/main/GitHubBotAvatar.png
           username: Trava
