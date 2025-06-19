@@ -6,19 +6,6 @@ on:
     types: [published]
 
 jobs:
-  notify:
-    runs-on: ubuntu-latest
-    environment: deploy
-    steps:
-      - name: Send Discord notification
-        uses: stegzilla/discord-notify@v2
-        with:
-          title: New Release!
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          message: "##${{ github.event.release.title }}\n\n**Details:** \n${{ github.event.release.body }}\n\n[Full Details](${{ github.event.release.html_url }})"
-          include_image: true
-          avatar_url: https://raw.githubusercontent.com/BoldestDungeon/wildermyth-drauven-pcs/refs/heads/main/GitHubBotAvatar.png
-          username: Trava
   workshopUpload:
     runs-on: ubuntu-latest
     environment: deploy
@@ -32,3 +19,16 @@ jobs:
           publishedFileId: 2810606541
           path: .
           changeNote: ${{ github.event.release.title }}\n\n${{ github.event.release.body }}
+  notify:
+    runs-on: ubuntu-latest
+    environment: deploy
+    steps:
+      - name: Send Discord notification
+        uses: stegzilla/discord-notify@v2
+        with:
+          title: New Release!
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          message: "##${{ github.event.release.title }}\n\n**Details:** \n${{ github.event.release.body }}\n\n[Full Details](${{ github.event.release.html_url }})"
+          include_image: true
+          avatar_url: https://raw.githubusercontent.com/BoldestDungeon/wildermyth-drauven-pcs/refs/heads/main/GitHubBotAvatar.png
+          username: Trava
