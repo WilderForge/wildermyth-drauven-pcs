@@ -1,9 +1,10 @@
 {
 	"schemaVersion": 1,
 	"id":"wildermyth-drauven-pcs",
+	"provides": "3317489452",
 	"version":"@modVersion@",
 	
-	"name":"Drauven PCs",
+	"name":"Drauven PCs (BETA)",
 	"description": "This mod adds the possibility to recruit Drauven characters to join your heroes and forge their own Legacy! These Drauven heroes will seamlessly integrate along your human adventurers and participate in all the great stories your Yondering Lands has to offer. (Mostly… see Beta Status and Known Issues)",
 	"authors": [
 		"ADD AUTHORS"
