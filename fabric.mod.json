@@ -26,7 +26,9 @@
 	},
 	"conflicts": {
 		"legacy_children": ["*"],
-		"lita": ["*"]
+		"2607356545": ["*"],
+		"lita": ["*"],
+		"1952293844": ["*"]
 	},
 	"breaks":{
 		"minecraft":["*"]
